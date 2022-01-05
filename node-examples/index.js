@@ -1,4 +1,4 @@
-var rect = require("./node-examples/rectangle")
+var rect = require("./rectangle")
 
 function solveRect(a, b) {
     console.log("Solving for rectangle with a = " + a + " and b = " + b);
