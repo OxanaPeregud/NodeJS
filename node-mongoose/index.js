@@ -15,11 +15,26 @@ connect.then(() => {
         .then((dish) => {
             console.log(dish);
 
-            return Dishes.find({}).exec();
+            return Dishes.findByIdAndUpdate(dish._id, {
+                $set: {description: "Updated description"}
+            }, {
+                new: true
+            }).exec();
         })
-        .then((dishes) => {
-            console.log(dishes);
+        .then((dish) => {
+            console.log(dish);
 
+            dish.comments.push({
+                rating: 5,
+                comment: "Dish comment",
+                author: "Dish author"
+            });
+
+            return dish.save();
+
+        })
+        .then((dish) => {
+            console.log(dish);
             return Dishes.deleteMany({});
         })
         .then(() => {
