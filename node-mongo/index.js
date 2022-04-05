@@ -10,20 +10,22 @@ MongoClient.connect(url).then((client) => {
 
     const db = client.db(dbname);
 
-    dboper.insertDocument(db, {name: "Dish", description: "New Dish"}, 'dishes')
+    const dish1 = {name: "Dish1", description: "Desc1"};
+    const dish2 = {name: "Dish2", description: "Desc2"};
+
+    dboper.insertDocument(db, [dish1, dish2], 'dishes')
         .then((result) => {
-            console.log('Inserted document id:\n', result.insertedId);
-            return dboper.findDocuments(db, 'dishes')
+            console.log('Inserted first document id:\n', result.insertedIds[0]);
+            return dboper.findDocuments(db, 'dishes');
         })
         .then((docs) => {
             console.log('Found documents:\n', docs);
-            return db.dropCollection('dishes')
+            return db.dropCollection('dishes');
         })
         .then((result) => {
             console.log('Dropped Collection: ', result);
             client.close();
 
         })
-        .catch((err) => console.log(err));
 })
     .catch((err) => console.log(err));

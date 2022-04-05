@@ -1,6 +1,6 @@
-exports.insertDocument = (db, document, collection) => {
+exports.insertDocument = (db, documents, collection) => {
     const coll = db.collection(collection);
-    return coll.insertOne(document);
+    return coll.insertMany(documents);
 };
 
 exports.findDocuments = (db, collection) => {
@@ -10,5 +10,5 @@ exports.findDocuments = (db, collection) => {
 
 exports.removeDocument = (db, document, collection) => {
     const coll = db.collection(collection);
-    return coll.deleteOne(document);
+    return coll.deleteMany(document);
 };
