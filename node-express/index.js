@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use('/dishes', dishRouter);
 app.use(express.static(__dirname + '/public'));
 
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html');
     res.end('<html lang="en"><body><h1>This is an Express Server</h1></body></html>');
